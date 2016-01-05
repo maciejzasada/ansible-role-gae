@@ -1,5 +1,6 @@
 ---
 # vars file for ansible-role-gae
+gae_action: 'install'
 gae_temp_dir: '.tmp'
 gae_version: "1.9.30"
 gae_language: "python"

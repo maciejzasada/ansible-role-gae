@@ -2,4 +2,4 @@
 # test playbook
 - hosts: all
   roles:
-  - { role: '../../', action: 'install', gae_install_dir: '/home/vagrant' }
+  - { role: '../../', gae_action: 'install', gae_language: 'python', gae_install_dir: '/home/vagrant' }

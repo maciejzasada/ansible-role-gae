@@ -1,32 +1,58 @@
-GAE
+GAE Ansible role
 =========
 
-Google App Engine Ansible Role.
-Provides installation, dev server (dev_appserver.py) and deployment (appcfg.py) tasks.
+Google App Engine Ansible Role.  
+Installs Google App Engine local server for Python, Java, PHP or Go (parametrised).
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+No specific requirements.
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Mandatory variables
+
+None.
+
+## Optional variables
+
+User-configurable defaults:
+
+    # Temporary directory for the role to work in
+    gae_temp_dir: '.tmp'
+
+    # Google App Engine SDK version to download and install
+    gae_version: "1.9.30"
+
+    # SDK language to install. One of the following: 'python', 'java', 'php', 'go'
+    gae_language: "python"
+
+    # Google App Engine SDK installation directory. By default the user's home directory.
+    gae_install_dir: "{{ ansible_env.HOME }}"
+
+    # Google App Engine SDK download directories. In case Google changes them.
+    gae_download_url_python: "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_{{ gae_version }}.zip"
+    gae_download_url_java: "https://storage.googleapis.com/appengine-sdks/featured/appengine-java-sdk-{{ gae_version }}.zip"
+    gae_download_url_php: "https://storage.googleapis.com/appengine-sdks/featured/google_appengine_{{ gae_version }}.zip"
+    gae_download_url_go: "https://storage.googleapis.com/appengine-sdks/featured/go_appengine_sdk_linux_amd64-{{ gae_version }}.zip"
+
+    # Role action. Provided for future compatibility if this role can also start a local server or deploy.
+    gae_action: 'install'
+    
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
+    - hosts: server
       roles:
-         - { role: username.rolename, x: 42 }
+      - { role: maciejzasada.gae, gae_action: 'install', gae_language: 'python', gae_install_dir: '/home/vagrant' }
 
 License
 -------

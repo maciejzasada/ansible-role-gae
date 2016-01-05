@@ -5,13 +5,13 @@
   apt: name=unzip update_cache=no
 
 - include: install-python.yml
-  when: gae_language=="python"
+  when: gae_language=='python'
 
 - include: install-java.yml
-  when: gae_language=="java"
+  when: gae_language=='java'
 
 - include: install-php.yml
-  when: gae_language=="php"
+  when: gae_language=='php'
 
 - include: install-go.yml
-  when: gae_language=="go"
+  when: gae_language=='go'
