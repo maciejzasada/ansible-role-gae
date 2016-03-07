@@ -17,5 +17,5 @@
     backrefs=yes
     regexp='PATH=(["]*)((?!.*?{{gae_install_dir}}/go_appengine).*?)(["]*)$'
     line="PATH=\1\2:{{gae_install_dir}}/go_appengine\3"
-  notify:
-    - restart shell
+  # notify:
+  #   - restart shell
